@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>MensHub </title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="toasts"></div>
+
+<!-- ══ NAV ══ -->
+<nav id="nav">
+  <a class="nv-logo" onclick="goTo('home')">MensHub</a>
+  <div class="nv-links">
+    <button class="nv-link active" id="nl-home" onclick="goTo('home')">Home</button>
+    <!-- <button class="nv-link" id="nl-shop" onclick="goTo('shop')">Shop</button> -->
+    <button class="nv-link" onclick="goTo('shop','tops')">Tops</button>
+    <button class="nv-link" onclick="goTo('shop','bottoms')">Bottoms</button>
+    <button class="nv-link" onclick="goTo('shop','outerwear')">Outerwear</button>
+    <!-- <button class="nv-link nv-link-sale" onclick="goTo('shop','sale')">Sale</button> -->
+  </div>
+  <div class="nv-right">
+    <button class="nv-icon" onclick="goTo('cart')" title="Cart" id="cartNavBtn">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <span class="cart-dot" id="cartDot">0</span>
+    </button>
+    <button class="nv-icon" id="accBtn" onclick="onAcc()" title="Account">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+    </button>
+    <button class="hamburger" id="ham" onclick="toggleMenu()">
+      <span class="hline"></span><span class="hline"></span><span class="hline"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mmenu" id="mmenu">
+  <div class="mmenu-inner">
+    <button class="mlink" onclick="goTo('home');closeMenu()"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>Home</button>
+    <!-- <button class="mlink" onclick="goTo('shop');closeMenu()"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>Shop All</button> -->
+    <button class="mlink" onclick="goTo('shop','tops');closeMenu()">Tops</button>
+    <button class="mlink" onclick="goTo('shop','bottoms');closeMenu()">Bottoms</button>
+    <!-- <button class="mlink" onclick="goTo('shop','outerwear');closeMenu()">Outerwear</button> -->
+    <button class="mlink" onclick="goTo('shop','accessories');closeMenu()">Accessories</button>
+    <div class="mdiv"></div>
+    <!-- <button class="mlink" onclick="goTo('shop','sale');closeMenu()" style="color:var(--orange)">🔥 Sale</button> -->
+    <button class="mlink" onclick="goTo('cart');closeMenu()"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>My Cart</button>
+    <button class="mlink" onclick="onAcc();closeMenu()" id="mobAccLink"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg><span id="mobAccTxt">My Account</span></button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ HOME ═══════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg-img"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow"><span class="hero-eyebrow-dot"></span>New Collection — SS 2026</div>
+        <h1 class="hero-title">
+          <span class="hero-line1">Dress</span>
+          <span class="hero-line2">Like You</span>
+          <span class="hero-line3">Mean It.</span>
+        </h1>
+        <p class="hero-desc">Premium streetwear, tailored essentials and statement pieces crafted for the modern man who refuses to compromise on style.</p>
+        <div class="hero-btns">
+          <button class="btn btn-primary" onclick="goTo('shop')">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            Shop Collection
+          </button>
+          <button class="btn btn-outline" onclick="goTo('shop','sale')">View Sale →</button>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><div class="stat-n">200+</div><div class="stat-l">Styles</div></div>
+          <div class="stat"><div class="stat-n">50K+</div><div class="stat-l">Customers</div></div>
+          <div class="stat"><div class="stat-n">4.9★</div><div class="stat-l">Rating</div></div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div> -->
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee">
+    <div class="mq-track">
+      <div class="mq-item">New Arrivals <span class="mq-dot">◆</span></div>
+      <div class="mq-item">Free Shipping ₹999+ <span class="mq-dot">◆</span></div>
+      <div class="mq-item">SS 2026 Collection <span class="mq-dot">◆</span></div>
+      <div class="mq-item">Easy 30-Day Returns <span class="mq-dot">◆</span></div>
+      <div class="mq-item">Up to 40% Off <span class="mq-dot">◆</span></div>
+      <div class="mq-item">Premium Fabrics <span class="mq-dot">◆</span></div>
+      <div class="mq-item">New Arrivals <span class="mq-dot">◆</span></div>
+      <div class="mq-item">Free Shipping ₹999+ <span class="mq-dot">◆</span></div>
+      <div class="mq-item">SS 2026 Collection <span class="mq-dot">◆</span></div>
+      <div class="mq-item">Easy 30-Day Returns <span class="mq-dot">◆</span></div>
+      <div class="mq-item">Up to 40% Off <span class="mq-dot">◆</span></div>
+      <div class="mq-item">Premium Fabrics <span class="mq-dot">◆</span></div>
+    </div>
+  </div>
+
+  <!-- TRUST -->
+  <div class="trust">
+    <div class="trust-cell"><div class="trust-ico ti-a"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8zM5.5 21a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM18.5 21a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/></svg></div><div class="trust-t">Free Shipping</div><div class="trust-s">On orders ₹999+</div></div>
+    <div class="trust-cell"><div class="trust-ico ti-b"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg></div><div class="trust-t">30-Day Returns</div><div class="trust-s">No questions asked</div></div>
+    <div class="trust-cell"><div class="trust-ico ti-c"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div><div class="trust-t">Secure Payments</div><div class="trust-s">256-bit SSL encrypted</div></div>
+    <div class="trust-cell"><div class="trust-ico ti-d"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><div class="trust-t">24/7 Support</div><div class="trust-s">Always here for you</div></div>
+  </div>
+
+  <!-- CATEGORIES — Myntra circle style -->
+  <div class="sec">
+    <div class="sec-top">
+      <div><div class="sec-eye" style="color:var(--orange)">Browse By Category</div><div class="sec-h">What Are You Looking For?</div></div>
+    </div>
+    <div class="cat-strip">
+      <div class="cat-item" onclick="goTo('shop','all')">
+        <div class="cat-ring"><img class="cat-img-w" src="https://images.unsplash.com/photo-1576871337622-98d48d1cf531?w=180&q=75" alt="All"/></div>
+        <span class="cat-label">All Styles</span>
+      </div>
+      <div class="cat-item" onclick="goTo('shop','tops')">
+        <div class="cat-ring"><img class="cat-img-w" src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=180&q=75" alt="Tops"/></div>
+        <span class="cat-label">Tops</span>
+      </div>
+      <div class="cat-item" onclick="goTo('shop','bottoms')">
+        <div class="cat-ring"><img class="cat-img-w" src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=180&q=75" alt="Bottoms"/></div>
+        <span class="cat-label">Bottoms</span>
+      </div>
+      <div class="cat-item" onclick="goTo('shop','outerwear')">
+        <div class="cat-ring"><img class="cat-img-w" src="https://images.unsplash.com/photo-1548126032-079a0fb0099d?w=180&q=75" alt="Outerwear"/></div>
+        <span class="cat-label">Outerwear</span>
+      </div>
+      <div class="cat-item" onclick="goTo('shop','accessories')">
+        <div class="cat-ring"><img class="cat-img-w" src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=180&q=75" alt="Accessories"/></div>
+        <span class="cat-label">Accessories</span>
+      </div>
+      <div class="cat-item" onclick="goTo('shop','sale')">
+        <div class="cat-ring"><img class="cat-img-w" src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=180&q=75" alt="Sale"/></div>
+        <span class="cat-label">Sale</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURED PRODUCTS -->
+  <div class="sec" style="padding-top:0">
+    <div class="sec-top">
+      <div><div class="sec-eye" style="color:var(--cyan)">Handpicked For You</div><div class="sec-h">Featured Drops</div></div>
+      <button class="sec-btn" onclick="goTo('shop')">View All →</button>
+    </div>
+    <div class="pgrid" id="homeGrid"></div>
+  </div>
+
+  <!-- BANNERS -->
+  <div class="banners">
+    <div class="bcard" onclick="goTo('shop','outerwear')">
+      <img class="bcard-bg" src="https://images.unsplash.com/photo-1544022613-e87ca75a784a?w=900&q=75" alt="Outerwear"/>
+      <div class="bcard-ov" style="background:linear-gradient(135deg,rgba(124,58,237,.72),rgba(15,5,40,.82))"></div>
+      <div class="bcard-cnt">
+        <div class="btag" style="background:rgba(167,139,250,.25);color:#c4b5fd">New Season</div>
+        <div class="bttl">The Outerwear Edit</div>
+        <div class="bsub">Premium jackets & coats for every occasion</div>
+        <button class="bcta">Explore Now →</button>
+      </div>
+    </div>
+    <div class="bcard" onclick="goTo('shop','sale')">
+      <img class="bcard-bg" src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=900&q=75" alt="Sale"/>
+      <div class="bcard-ov" style="background:linear-gradient(135deg,rgba(255,107,53,.68),rgba(80,20,0,.82))"></div>
+      <div class="bcard-cnt">
+        <div class="btag" style="background:rgba(255,107,53,.28);color:#fdba74">Limited Time</div>
+        <div class="bttl">Summer Sale</div>
+        <div class="bsub">Up to 40% off selected styles</div>
+        <button class="bcta">Shop Sale →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- REVIEWS -->
+  <div class="sec" style="padding-top:0">
+    <div class="sec-top">
+      <div><div class="sec-eye" style="color:var(--yellow)">Customer Love</div><div class="sec-h">What They're Saying</div></div>
+    </div>
+    <div class="rev-track">
+      <div class="rcard"><div class="rquote">"</div><p class="rtxt">Absolutely love the quality. The oversized shirt fits perfectly — premium fabric, great attention to detail. Already placed a second order.</p><div class="rauthor"><div class="rava">AK</div><div><div class="rname">Aryan K.</div><div class="rstars">★★★★★</div><div class="rveri">✓ Verified Buyer</div></div></div></div>
+      <div class="rcard"><div class="rquote">"</div><p class="rtxt">Fast delivery, amazing packaging. The blazer looks even better in person — got so many compliments in the first week!</p><div class="rauthor"><div class="rava">RS</div><div><div class="rname">Rohit S.</div><div class="rstars">★★★★★</div><div class="rveri">✓ Verified Buyer</div></div></div></div>
+      <div class="rcard"><div class="rquote">"</div><p class="rtxt">DRIP is my go-to now. Great variety, honest sizing, and the sale section has genuinely unbeatable value.</p><div class="rauthor"><div class="rava">DM</div><div><div class="rname">Dev M.</div><div class="rstars">★★★★☆</div><div class="rveri">✓ Verified Buyer</div></div></div></div>
+      <div class="rcard"><div class="rquote">"</div><p class="rtxt">Size guide was spot on. Customer support resolved my exchange within hours. Will absolutely be back.</p><div class="rauthor"><div class="rava">KP</div><div><div class="rname">Karan P.</div><div class="rstars">★★★★★</div><div class="rveri">✓ Verified Buyer</div></div></div></div>
+      <div class="rcard"><div class="rquote">"</div><p class="rtxt">The wool blend overcoat is my favourite purchase this year. Premium feel at a price that doesn't break the bank.</p><div class="rauthor"><div class="rava">NT</div><div><div class="rname">Nikhil T.</div><div class="rstars">★★★★★</div><div class="rveri">✓ Verified Buyer</div></div></div></div>
+    </div>
+  </div>
+
+  <!-- PROMO -->
+  <div class="promo-sec">
+    <div class="promo-box">
+      <div><div class="promo-t">Up to 40% Off — This Weekend Only</div><div class="promo-s">Use code <strong>DRIP40</strong> at checkout. Limited time, limited stock.</div></div>
+      <button class="promo-cta" onclick="goTo('shop','sale')">Shop the Sale →</button>
+    </div>
+  </div>
+
+  <!-- NEWSLETTER -->
+  <div class="nl-sec" style="max-width:1300px;padding:0 48px 80px">
+    <div class="nl-box">
+      <div class="nl-t">Join the Squad</div>
+      <div class="nl-s">Get early access to new drops, exclusive deals and style inspo. Zero spam.</div>
+      <div class="nl-form">
+        <input class="nl-inp" type="email" id="nlEmail" placeholder="your@email.com"/>
+        <button class="btn btn-primary" onclick="nlSub()">Subscribe</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="ft-grid">
+      <div>
+        <div class="ft-brand">MensHub</div>
+        <div class="ft-tag">Premium men's fashion at every price point. Dress sharp, move free, live bold.</div>
+        <div class="ft-soc">
+          <a title="Instagram"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a title="Twitter"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg></a>
+          <!-- <a title="YouTube"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-2C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 2A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 001.95-2A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></a> -->
+        </div>
+      </div>
+      <div><div class="ft-h">Shop</div><ul class="ft-links"><li><a href="#" onclick="goTo('shop');return false">New Arrivals</a></li><li><a href="#" onclick="goTo('shop','tops');return false">Tops</a></li><li><a href="#" onclick="goTo('shop','bottoms');return false">Bottoms</a></li><li><a href="#" onclick="goTo('shop','outerwear');return false">Outerwear</a></li><li><a href="#" onclick="goTo('shop','sale');return false">Sale</a></li></ul></div>
+      <div><div class="ft-h">Help</div><ul class="ft-links"><li><a href="#">Size Guide</a></li><li><a href="#">Track Order</a></li><li><a href="#">Returns</a></li><li><a href="#">FAQ</a></li><li><a href="#">Contact</a></li></ul></div>
+      <div><div class="ft-h">Company</div><ul class="ft-links"><li><a href="#">About</a></li><li><a href="#">Careers</a></li><li><a href="#">Press</a></li><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li></ul></div>
+    </div>
+    <div class="ft-bot">
+      <span class="ft-copy">© 2026  MensHub. All rights reserved.</span>
+      <!-- <span class="ft-copy">Made with care in India 🇮🇳</span> -->
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════ SHOP PAGE ═══════════════════════════ -->
+<div class="page" id="page-shop">
+  <!-- Sidebar backdrop -->
+  <div class="sback" id="sBack" onclick="closeSidebar()"></div>
+  <div class="shop-wrap">
+    <!-- SIDEBAR -->
+    <aside class="shop-sidebar" id="shopSide">
+      <div class="sside-sticky">
+        <div class="scard">
+          <div class="scard-h">Categories</div>
+          <div class="scard-b" style="padding:10px 18px">
+            <label class="frow"><input type="radio" name="fcat" value="all" checked onchange="doFilter()"/><label>All Styles</label><span class="fcnt">16</span></label>
+            <label class="frow"><input type="radio" name="fcat" value="tops" onchange="doFilter()"/><label>Tops</label><span class="fcnt">5</span></label>
+            <label class="frow"><input type="radio" name="fcat" value="bottoms" onchange="doFilter()"/><label>Bottoms</label><span class="fcnt">4</span></label>
+            <label class="frow"><input type="radio" name="fcat" value="outerwear" onchange="doFilter()"/><label>Outerwear</label><span class="fcnt">4</span></label>
+            <label class="frow"><input type="radio" name="fcat" value="accessories" onchange="doFilter()"/><label>Accessories</label><span class="fcnt">3</span></label>
+            <label class="frow"><input type="radio" name="fcat" value="sale" onchange="doFilter()"><label style="color:var(--orange)">Sale</label><span class="fcnt">6</span></label>
+          </div>
+        </div>
+        <div class="scard">
+          <div class="scard-h">Price Range</div>
+          <div class="scard-b">
+            <input type="range" id="priceR" min="0" max="12000" value="12000" oninput="updatePriceR()"/>
+            <div class="price-vals"><span>₹0</span><span id="priceRlbl">₹12,000</span></div>
+          </div>
+        </div>
+        <div class="scard">
+          <div class="scard-h">Brand</div>
+          <div class="scard-b" style="padding:10px 18px">
+            <label class="frow"><input type="checkbox" value="DRIP" onchange="doFilter()"/><label>DRIP</label><span class="fcnt">6</span></label>
+            <label class="frow"><input type="checkbox" value="ESSENTIAL" onchange="doFilter()"/><label>ESSENTIAL</label><span class="fcnt">5</span></label>
+            <label class="frow"><input type="checkbox" value="NOIR" onchange="doFilter()"/><label>NOIR</label><span class="fcnt">5</span></label>
+          </div>
+        </div>
+        <div class="scard">
+          <div class="scard-h">Color</div>
+          <div class="scard-b">
+            <div class="swatch-row">
+              <div class="cswatch" style="background:#f5f5f0;border-color:#555" onclick="this.classList.toggle('on')" title="White"></div>
+              <div class="cswatch" style="background:#1a1a1a" onclick="this.classList.toggle('on')" title="Black"></div>
+              <div class="cswatch" style="background:#8B8B8B" onclick="this.classList.toggle('on')" title="Gray"></div>
+              <div class="cswatch" style="background:#C0392B" onclick="this.classList.toggle('on')" title="Red"></div>
+              <div class="cswatch" style="background:#2E86AB" onclick="this.classList.toggle('on')" title="Blue"></div>
+              <div class="cswatch" style="background:#27AE60" onclick="this.classList.toggle('on')" title="Green"></div>
+            </div>
+            <button class="sapply" onclick="doFilter()">Apply Filters</button>
+            <button class="sclear" onclick="clearF()">Clear All</button>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <div style="flex:1;min-width:0">
+      <div style="margin-bottom:18px">
+        <h1 style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;margin-bottom:4px">Men's Fashion</h1>
+        <p style="color:var(--muted2);font-size:.87rem">Discover the latest styles curated for the modern man</p>
+      </div>
+      <div class="shop-toolbar">
+        <button class="fmobb" onclick="openSidebar()" style="display:none">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="14" y2="12"/><line x1="4" y1="18" x2="10" y2="18"/></svg>
+          Filters
+        </button>
+        <div class="sbar">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="sSearch" placeholder="Search products…" oninput="doFilter()"/>
+        </div>
+        <select class="ssort" id="sSort" onchange="doFilter()">
+          <option value="default">Featured</option>
+          <option value="price-asc">Price: Low → High</option>
+          <option value="price-desc">Price: High → Low</option>
+          <option value="newest">Newest First</option>
+          <option value="rating">Top Rated</option>
+        </select>
+        <div class="vbtns">
+          <button class="vbtn on" id="gvb" onclick="setV('grid')" title="Grid">
+            <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          </button>
+          <button class="vbtn" id="lvb" onclick="setV('list')" title="List">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="atags" id="aTags"></div>
+      <div class="rcount" id="rCount">Showing 16 products</div>
+      <div class="pgrid" id="shopGrid"></div>
+      <div class="pages">
+        <button class="pgr">‹</button>
+        <button class="pgr on">1</button>
+        <button class="pgr">2</button>
+        <button class="pgr">3</button>
+        <button class="pgr">›</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ CART PAGE ═══════════════════════════ -->
+<div class="page" id="page-cart">
+  <div class="cart-wrap">
+    <div>
+      <div class="cart-h">Your Bag <span class="cart-badge" id="cartPageBadge">0</span></div>
+      <div id="cartMain"></div>
+    </div>
+    <div class="summ-panel" id="cartSumm"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ PROFILE PAGE ═══════════════════════════ -->
+<div class="page" id="page-profile">
+  <div class="prof-wrap">
+    <div class="prof-side">
+      <div class="prof-ava-wrap">
+        <div class="prof-ava" id="profAva">?</div>
+        <div class="prof-name" id="profName">Loading…</div>
+        <div class="prof-email" id="profEmail"></div>
+        <div class="prof-badge">✦ DRIP Member</div>
+      </div>
+      <nav class="prof-nav">
+        <button class="pni on" id="pni-orders" onclick="showTab('orders')">
+          <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg>My Orders
+        </button>
+        <button class="pni" id="pni-wishlist" onclick="showTab('wishlist')">
+          <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>Wishlist
+        </button>
+        <button class="pni" id="pni-account" onclick="showTab('account')">
+          <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>Account Settings
+        </button>
+        <div class="pndiv"></div>
+        <button class="pni logout" onclick="doLogout()">
+          <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/></svg>Sign Out
+        </button>
+      </nav>
+    </div>
+    <div>
+      <div class="ptab on" id="tab-orders">
+        <div class="ptab-t">My Orders</div>
+        <div id="ordersList"></div>
+      </div>
+      <div class="ptab" id="tab-wishlist">
+        <div class="ptab-t">Wishlist</div>
+        <div class="wgrid" id="wishGrid"></div>
+      </div>
+      <div class="ptab" id="tab-account">
+        <div class="ptab-t">Account Settings</div>
+        <div class="settings-card">
+          <div class="fgrow">
+            <div class="fg"><label class="flbl">First Name</label><input class="finp" id="sname1" type="text"/></div>
+            <div class="fg"><label class="flbl">Last Name</label><input class="finp" id="sname2" type="text"/></div>
+          </div>
+          <div class="fg"><label class="flbl">Email Address</label><input class="finp" id="semail" type="email"/></div>
+          <div class="fg"><label class="flbl">Phone Number</label><input class="finp" id="sphone" type="tel" placeholder="+91 XXXXX XXXXX"/></div>
+          <button class="btn btn-primary" onclick="saveSettings()" style="margin-top:8px">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PRODUCT DETAIL MODAL ═══ -->
+<div class="pdp-modal-ov" id="pdpOv" onclick="if(event.target===this){document.getElementById('pdpOv').classList.remove('open');document.body.style.overflow=''}">
+  <div class="pdp-modal-box" id="pdpBox">
+    <button class="pdp-modal-close" onclick="document.getElementById('pdpOv').classList.remove('open');document.body.style.overflow=''">✕</button>
+  </div>
+</div>
+
+<!-- ═══ AUTH MODAL ═══ -->
+<div class="modal-ov" id="authOv" onclick="closeAuth(event)">
+  <div class="auth-box">
+    <button class="auth-close" onclick="closeAuth()">✕</button>
+    <div id="authContent"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ CHECKOUT PAGE ═══════════════════════════ -->
+<div class="page" id="page-checkout">
+  <div class="checkout-shell">
+
+    <!-- STEPPER -->
+    <div class="co-stepper">
+      <div class="co-step" id="cstep-address">
+        <div class="cstep-num">1</div>
+        <div class="cstep-lbl">Delivery Address</div>
+      </div>
+      <div class="cstep-line"></div>
+      <div class="co-step" id="cstep-payment">
+        <div class="cstep-num">2</div>
+        <div class="cstep-lbl">Payment</div>
+      </div>
+      <div class="cstep-line"></div>
+      <div class="co-step" id="cstep-confirm">
+        <div class="cstep-num">3</div>
+        <div class="cstep-lbl">Confirmation</div>
+      </div>
+    </div>
+
+    <div class="checkout-body">
+
+      <!-- LEFT: STEP PANELS -->
+      <div class="co-left">
+
+        <!-- STEP 1: ADDRESS -->
+        <div class="co-panel" id="co-panel-address">
+          <div class="co-panel-head">
+            <div class="co-panel-icon" style="background:rgba(255,107,53,.12);color:var(--orange)">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div class="co-panel-title">Delivery Address</div>
+              <div class="co-panel-sub">Where should we send your order?</div>
+            </div>
+          </div>
+
+          <div class="co-saved-addr" id="coSavedAddr"></div>
+
+          <div class="co-form" id="coAddrForm">
+            <div class="fgrow">
+              <div class="fg"><label class="flbl">First Name *</label><input class="finp" id="co_fn" type="text" placeholder="Ravi"/></div>
+              <div class="fg"><label class="flbl">Last Name *</label><input class="finp" id="co_ln" type="text" placeholder="Kumar"/></div>
+            </div>
+            <div class="fg"><label class="flbl">Phone Number *</label><input class="finp" id="co_ph" type="tel" placeholder="+91 98765 43210"/></div>
+            <div class="fg"><label class="flbl">Address Line 1 *</label><input class="finp" id="co_a1" type="text" placeholder="House No., Street Name"/></div>
+            <div class="fg"><label class="flbl">Address Line 2</label><input class="finp" id="co_a2" type="text" placeholder="Apartment, Landmark (optional)"/></div>
+            <div class="fgrow">
+              <div class="fg"><label class="flbl">City *</label><input class="finp" id="co_city" type="text" placeholder="Bengaluru"/></div>
+              <div class="fg"><label class="flbl">Pincode *</label><input class="finp" id="co_pin" type="text" placeholder="560001" maxlength="6"/></div>
+            </div>
+            <div class="fgrow">
+              <div class="fg">
+                <label class="flbl">State *</label>
+                <select class="finp" id="co_state">
+                  <option value="">Select State</option>
+                  <option>Andhra Pradesh</option><option>Assam</option><option>Bihar</option>
+                  <option>Chhattisgarh</option><option>Delhi</option><option>Goa</option>
+                  <option>Gujarat</option><option>Haryana</option><option>Himachal Pradesh</option>
+                  <option>Jharkhand</option><option selected>Karnataka</option><option>Kerala</option>
+                  <option>Madhya Pradesh</option><option>Maharashtra</option><option>Manipur</option>
+                  <option>Meghalaya</option><option>Odisha</option><option>Punjab</option>
+                  <option>Rajasthan</option><option>Tamil Nadu</option><option>Telangana</option>
+                  <option>Uttar Pradesh</option><option>Uttarakhand</option><option>West Bengal</option>
+                </select>
+              </div>
+              <div class="fg">
+                <label class="flbl">Address Type</label>
+                <div class="addr-type-row">
+                  <label class="addr-type-opt"><input type="radio" name="addrType" value="Home" checked/><span>🏠 Home</span></label>
+                  <label class="addr-type-opt"><input type="radio" name="addrType" value="Work"/><span>💼 Work</span></label>
+                  <label class="addr-type-opt"><input type="radio" name="addrType" value="Other"/><span>📍 Other</span></label>
+                </div>
+              </div>
+            </div>
+            <div class="co-checkbox-row">
+              <label class="co-chk">
+                <input type="checkbox" id="co_default" checked/>
+                <span class="co-chk-box"></span>
+                <span class="co-chk-lbl">Save this address for future orders</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="co-actions">
+            <button class="btn btn-outline" onclick="goTo('cart')">← Back to Cart</button>
+            <button class="btn btn-primary" onclick="coGoPayment()">Continue to Payment →</button>
+          </div>
+        </div>
+
+        <!-- STEP 2: PAYMENT -->
+        <div class="co-panel hidden" id="co-panel-payment">
+          <div class="co-panel-head">
+            <div class="co-panel-icon" style="background:rgba(0,212,170,.12);color:var(--cyan)">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            </div>
+            <div>
+              <div class="co-panel-title">Payment Method</div>
+              <div class="co-panel-sub">100% secure &amp; encrypted payment</div>
+            </div>
+          </div>
+
+          <!-- Payment method tabs -->
+          <div class="pay-tabs">
+            <button class="pay-tab on" id="ptab-upi" onclick="selectPayTab('upi')">
+              <svg width="16" height="16" viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="8" fill="#1a1a2e"/><text x="50%" y="58%" dominant-baseline="middle" text-anchor="middle" fill="#fff" font-size="11" font-weight="700" font-family="sans-serif">UPI</text></svg>
+              UPI
+            </button>
+            <button class="pay-tab" id="ptab-card" onclick="selectPayTab('card')">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+              Card
+            </button>
+            <button class="pay-tab" id="ptab-netbanking" onclick="selectPayTab('netbanking')">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+              Net Banking
+            </button>
+            <button class="pay-tab" id="ptab-cod" onclick="selectPayTab('cod')">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Cash on Delivery
+            </button>
+          </div>
+
+          <!-- UPI Panel -->
+          <div class="pay-panel" id="ppanel-upi">
+            <div class="pay-section-lbl">Enter UPI ID</div>
+            <div class="upi-row">
+              <input class="finp" id="co_upi" type="text" placeholder="yourname@upi" style="flex:1"/>
+              <button class="upi-verify-btn" onclick="verifyUpi()">Verify</button>
+            </div>
+            <div class="upi-verified-msg hidden" id="upiMsg"></div>
+            <div class="pay-divider"><span>or choose app</span></div>
+            <div class="upi-apps">
+              <div class="upi-app-btn on" id="uapp-gpay" onclick="selectUpiApp('gpay')">
+                <div class="upi-app-ico" style="background:linear-gradient(135deg,#4285F4,#34A853)">G</div>
+                <span>GPay</span>
+              </div>
+              <div class="upi-app-btn" id="uapp-paytm" onclick="selectUpiApp('paytm')">
+                <div class="upi-app-ico" style="background:linear-gradient(135deg,#00BAF2,#0071bc)">P</div>
+                <span>Paytm</span>
+              </div>
+              <div class="upi-app-btn" id="uapp-phonepe" onclick="selectUpiApp('phonepe')">
+                <div class="upi-app-ico" style="background:linear-gradient(135deg,#5F259F,#400099)">₱</div>
+                <span>PhonePe</span>
+              </div>
+              <div class="upi-app-btn" id="uapp-bhim" onclick="selectUpiApp('bhim')">
+                <div class="upi-app-ico" style="background:linear-gradient(135deg,#FF6B35,#FF3E9D)">B</div>
+                <span>BHIM</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card Panel -->
+          <div class="pay-panel hidden" id="ppanel-card">
+            <div class="pay-section-lbl">Card Details</div>
+            <div class="fg">
+              <label class="flbl">Card Number *</label>
+              <div class="card-num-wrap">
+                <input class="finp" id="co_cardnum" type="text" placeholder="1234  5678  9012  3456" maxlength="19" oninput="fmtCard(this)"/>
+                <div class="card-icons">
+                  <span class="card-icon-b" id="ci-visa">VISA</span>
+                  <span class="card-icon-b" id="ci-mc">MC</span>
+                </div>
+              </div>
+            </div>
+            <div class="fg"><label class="flbl">Cardholder Name *</label><input class="finp" id="co_cname" type="text" placeholder="RAVI KUMAR"/></div>
+            <div class="fgrow">
+              <div class="fg"><label class="flbl">Expiry Date *</label><input class="finp" id="co_exp" type="text" placeholder="MM / YY" maxlength="7" oninput="fmtExpiry(this)"/></div>
+              <div class="fg">
+                <label class="flbl">CVV *
+                  <span class="cvv-help" title="3-digit code on back of card">?</span>
+                </label>
+                <div class="cvv-wrap">
+                  <input class="finp" id="co_cvv" type="password" placeholder="•••" maxlength="4"/>
+                  <svg class="cvv-card-ico" width="28" height="20" viewBox="0 0 28 20" fill="none"><rect width="28" height="20" rx="3" fill="#333"/><rect x="0" y="5" width="28" height="5" fill="#222"/><rect x="16" y="12" width="9" height="4" rx="1" fill="#aaa"/></svg>
+                </div>
+              </div>
+            </div>
+            <label class="co-chk" style="margin-top:4px">
+              <input type="checkbox" id="co_savecard"/>
+              <span class="co-chk-box"></span>
+              <span class="co-chk-lbl">Save card for future payments (secured)</span>
+            </label>
+          </div>
+
+          <!-- Net Banking Panel -->
+          <div class="pay-panel hidden" id="ppanel-netbanking">
+            <div class="pay-section-lbl">Select Your Bank</div>
+            <div class="nb-banks">
+              <label class="nb-bank" id="nb-sbi"><input type="radio" name="nbBank" value="SBI"/><span class="nb-logo sbi">SBI</span><span>State Bank of India</span></label>
+              <label class="nb-bank" id="nb-hdfc"><input type="radio" name="nbBank" value="HDFC"/><span class="nb-logo hdfc">HDFC</span><span>HDFC Bank</span></label>
+              <label class="nb-bank" id="nb-icici"><input type="radio" name="nbBank" value="ICICI"/><span class="nb-logo icici">ICICI</span><span>ICICI Bank</span></label>
+              <label class="nb-bank" id="nb-axis"><input type="radio" name="nbBank" value="AXIS"/><span class="nb-logo axis">AXIS</span><span>Axis Bank</span></label>
+              <label class="nb-bank" id="nb-kotak"><input type="radio" name="nbBank" value="KOTAK"/><span class="nb-logo kotak">KMB</span><span>Kotak Mahindra</span></label>
+              <label class="nb-bank" id="nb-pnb"><input type="radio" name="nbBank" value="PNB"/><span class="nb-logo pnb">PNB</span><span>Punjab National Bank</span></label>
+            </div>
+            <div class="nb-note">
+              <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              You'll be redirected to your bank's secure portal to complete the payment.
+            </div>
+          </div>
+
+          <!-- COD Panel -->
+          <div class="pay-panel hidden" id="ppanel-cod">
+            <div class="cod-card">
+              <div class="cod-icon">💵</div>
+              <div class="cod-title">Cash on Delivery</div>
+              <div class="cod-desc">Pay with cash when your order is delivered. A small COD convenience fee of <strong>₹49</strong> will be added.</div>
+              <div class="cod-note">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Please keep exact change ready for a smooth delivery experience.
+              </div>
+            </div>
+          </div>
+
+          <!-- Delivery address summary -->
+          <div class="addr-summary" id="coAddrSummary"></div>
+
+          <div class="co-actions">
+            <button class="btn btn-outline" onclick="coGoAddress()">← Edit Address</button>
+            <button class="btn btn-primary" id="placeOrderBtn" onclick="coPlaceOrder()">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+              Place Order Securely
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 3: CONFIRMATION -->
+        <div class="co-panel hidden" id="co-panel-confirm">
+          <div id="co-confirm-content"></div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT: ORDER SUMMARY -->
+      <div class="co-right" id="coOrderSummaryPanel"></div>
+
+    </div>
+  </div>
+</div>
+
+<!-- PAYMENT LOADING OVERLAY -->
+<div class="pay-loading-ov" id="payLoadingOv">
+  <div class="pay-spin"></div>
+  <div class="pay-loading-t">Processing Your Payment</div>
+  <div class="pay-loading-s">Please do not close or refresh this page...</div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
